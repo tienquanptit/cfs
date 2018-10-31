@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
 
     ],
 

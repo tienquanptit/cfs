@@ -22,3 +22,5 @@ Route::get('/admin', function () {
 Route::get('/admin/home', function () {
     return view('admin.home');
 });
+
+Route::resource('/admin/confessions', 'admin\ConfessionController')->except(['create', 'store', 'edit', 'update']);
