@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/cfs', 'User\HomeController');
+
+Route::resource('/confession', 'User\ConfessionController');
+
 //*************** Phan Admin *****************
 Route::get('/admin', function () {
     return view('admin.index');
