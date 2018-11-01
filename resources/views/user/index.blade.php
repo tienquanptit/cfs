@@ -167,8 +167,8 @@
 
                         </div>
                     </div>
+                    @foreach ($confessions as $key => $confession)
                         <div class="card">
-                        @foreach ($confessions as $key => $confession)
                             <div class="feed-header">
                                 <ul class="list-media">
                                     <li class="list-item">
@@ -236,8 +236,8 @@
                                 </div>
 
                             </div>
-                        @endforeach
                         </div>
+                    @endforeach
                     <div class="card">
                         <div class="feed-header">
                             <ul class="list-media">

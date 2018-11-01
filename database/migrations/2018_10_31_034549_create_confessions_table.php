@@ -17,7 +17,7 @@ class CreateConfessionsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('body');
-            $table->string('images')->nullale();
+            $table->string('images')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
