@@ -28,3 +28,11 @@ div a .resize_logo_img {
   margin-bottom: 15px;
 }
 
+.fix_float {
+  float: right;
+}
+
+.display_form {
+  display: inline;
+}
+

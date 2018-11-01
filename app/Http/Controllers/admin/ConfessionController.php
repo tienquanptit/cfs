@@ -56,7 +56,8 @@ class ConfessionController extends Controller
      */
     public function show($id)
     {
-        //
+        $confession = $this->confession->show($id);
+        return view('admin.confession.show', compact('confession'));
     }
 
     /**
@@ -90,6 +91,7 @@ class ConfessionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->confession->delete($id);
+        return back()->with('success', __('message.success'));
     }
 }

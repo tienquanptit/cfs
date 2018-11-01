@@ -37,10 +37,26 @@ return [
     'details_account' => 'Enter your account details below:',
     'title_confession' => 'Confessions',
     'title_list_confession' => 'List Confessions',
+    'cfs_list_title' => 'List Confession',
+    'list_title' => 'LIST CONFESSION TABLE',
+    'name_list_cfs' => ' Confessions',
+    'show_title' => 'Detail Confession',
+    'title_detail' => 'Detail',
+    'title_general' => 'General Information',
+
+    'confession_title' => 'Title',
+    'confession_body' => 'Body',
+    'confession_images' => 'Images',
+    'confession_id' => 'ID',
+    'confession_created_at' => 'Created At',
+    'confession_deleted_at' => 'Deleted At',
+    'success' => 'Successfully!',
 
 
     'btn_back' => 'Back',
     'btn_submit' => 'Submit',
     'btn_signup' => 'Sign Up',
     'btn_login' => 'Login',
+    'btn_show' => 'Show',
+    'btn_delete' => 'Delete',
 ];

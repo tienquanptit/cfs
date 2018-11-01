@@ -29,6 +29,8 @@ class Confession extends Model
         'updated_at',
     ];
 
+    protected $dates = ['deleted_at'];
+
     /**
      * The attributes that should be hidden for arrays.
      *

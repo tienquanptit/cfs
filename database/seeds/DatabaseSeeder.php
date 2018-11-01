@@ -42,23 +42,23 @@ class ConfessionsTableSeed extends Seeder
         DB::table('confessions')->insert([
             [
                 'title' => 'Cfs1',
-                'content' => 'content cfs1',
+                'body' => 'content cfs1',
             ],
             [
                 'title' => 'cfs2',
-                'content' => 'content cfs2',
+                'body' => 'content cfs2',
             ],
             [
                 'title' => 'cfs3',
-                'content' => 'content cfs3',
+                'body' => 'content cfs3',
             ],
             [
                 'title' => 'cfs4',
-                'content' => 'content cfs4',
+                'body' => 'content cfs4',
             ],
             [
                 'title' => 'cfs5',
-                'content' => 'contetn cfs5',
+                'body' => 'contetn cfs5',
             ]
         ]);
     }
