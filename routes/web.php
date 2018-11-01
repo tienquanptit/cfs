@@ -15,16 +15,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/cfs', 'User\HomeController');
-
-Route::resource('/confession', 'User\ConfessionController');
-
 //*************** Phan Admin *****************
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-Route::get('/admin/home', function () {
-    return view('admin.home');
-});
+//login
+Route::get('admin/login', [
+    'as' => 'login',
+    'uses' => 'admin\loginController@ViewLogin',
+]);
+Route::post('admin/login', [
+    'as' => 'loginAdmin',
+    'uses' => 'admin\loginController@PostLogin',
+]);
+//logout
+Route::get('admin/logOut', [
+    'as' => 'logout',
+    'uses' => 'admin\loginController@AdminlogOut',
+]);
+Route::group(['prefix' => 'admin', 'middleware' => ['adminLogin', 'locale']], function () {
+    Route::resource('dashboard', 'admin\DashboardController');
+    Route::get('change-language/{lang}', [
+        'as' => 'change_lang',
+        'uses' => 'admin\DashboardController@change_lang',
+    ]);
 
-Route::resource('/admin/confessions', 'admin\ConfessionController')->except(['create', 'store', 'edit', 'update']);
+    Route::resource('confessions', 'admin\ConfessionController')->except(['create', 'store', 'edit', 'update']);
+    Route::get('home', function () {
+        return view('admin.home');
+    });
+});
