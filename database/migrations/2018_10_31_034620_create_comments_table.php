@@ -16,12 +16,12 @@ class CreateCommentsTable extends Migration
         if (!Schema::hasTable('comments')) {
             Schema::create('comments', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('post_id')->unsigned();
-                $table->foreign('post_id')->references('id')->on('posts');
                 $table->integer('user_id')->unsigned();
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->integer('parent_id')->unsigned()->default(0);
                 $table->text('content');
+                $table->integer('comment_table_id')->comment('Chứa gia trị id của post hoặc confession');
+                $table->string('comment_table_type')->comment('Chứa tên class của model sở hữu - post và Confession');
                 $table->timestamps();
                 $table->softDeletes();
             });

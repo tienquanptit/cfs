@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopicUserTable extends Migration
+class CreateFollowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateTopicUserTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('topic_user')) {
-            Schema::create('topic_user', function (Blueprint $table) {
+        if (!Schema::hasTable('follows')) {
+            Schema::create('follows', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('topic_id')->unsigned();
-                $table->foreign('topic_id')->references('id')->on('topics');
                 $table->integer('user_id')->unsigned();
                 $table->foreign('user_id')->references('id')->on('users');
-                $table->tinyInteger('follow')->default(0)->comment('1 - follow');
+                $table->integer('follow_table_id')->comment('Chứa gia trị id của topic hoặc user');
+                $table->string('follow_table_type')->comment('Chứa tên class của model sở hữu - user và topic');
                 $table->timestamps();
                 $table->softDeletes();
             });
@@ -34,6 +33,6 @@ class CreateTopicUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topic_user');
+        Schema::dropIfExists('follows');
     }
 }

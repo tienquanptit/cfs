@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
                 $table->string('phone');
                 $table->string('address');
                 $table->tinyInteger('gender')->default(0)->comment('0 - Nam, 1 - Nu');
-                $table->string('images');
+                $table->tinyInteger('type')->default(0)->comment('0 - User, 1 - Admin');
+                $table->string('images')->nullable();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
                 $table->rememberToken();

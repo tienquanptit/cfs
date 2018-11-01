@@ -24,6 +24,7 @@ class Confession extends Model
         'title',
         'content',
         'images',
+        'body',
         'created_at',
         'updated_at',
     ];
@@ -39,10 +40,10 @@ class Confession extends Model
     ];
 
     /**
-     * Get topics: Many to many
+     * Get users: Many to many
      * @return [type] [description]
      */
-    public function topics() {
-        return $this->belongsToMany('App\Models\Topic', 'topic_user', 'user_id', 'topic_id');
+    public function users() {
+        return $this->belongsToMany('App\Models\User', 'confession_user', 'confession_id', 'user_id');
     }
 }

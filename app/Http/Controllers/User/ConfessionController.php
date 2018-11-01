@@ -2,11 +2,29 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Requests\ConfessionRequest;
+use App\Models\Confession;
+use App\Repositories\Contracts\ConfessionRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use Validator;
+use Exception;
 
 class ConfessionController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    protected $confession;
+
+    public function __construct(ConfessionRepository $confession)
+    {
+        $this->confession = $confession;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +42,7 @@ class ConfessionController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.confession.create');
     }
 
     /**
@@ -33,8 +51,29 @@ class ConfessionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConfessionRequest $request)
     {
+
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            //dd($image);
+            $new_name = str_random(3).'_'.$image->getClientOriginalName();
+
+            while (file_exists(config('app.common.images_confession').$new_name)) {
+                $new_name = str_random(3).'_'.$new_name;
+            }
+
+            $image->storeAs(config('app.common.images_confession'), $new_name);
+        }
+
+        $confession = new Confession(array(
+            'title' => $request->get('title'),
+            'body' => $request->get('body'),
+            'images' => $new_name
+        ));
+        $confession->save();
+
+        return redirect()->route('cfs.index');
 
     }
 

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Report extends Model
+class Follow extends Model
 {
     use SoftDeletes;
     /**
      * [$table description]
      * @var string
      */
-    protected $table= 'reports';
+    protected $table= 'follows';
 
     /**
      * [$dates description]
@@ -26,8 +26,8 @@ class Report extends Model
      */
     protected $fillable = [
         'user_id',
-        'report_table_id',
-        'report_table_type',
+        'follow_table_id',
+        'follow_table_type',
         'created_at',
         'updated_at',
         'deleted_at'
@@ -42,32 +42,32 @@ class Report extends Model
     }
 
     /**
-     * Get all of the owning reportTable models.
+     * Get all of the owning followTable models.
      */
-    public function reportTable()
+    public function followTable()
     {
         return $this->morphTo();
     }
 }
 
-class Post extends Model
+class User extends Model
 {
     /**
-     * Get all of the post's reports.
+     * Get all of the user's follows.
      */
-    public function reports()
+    public function follows()
     {
-        return $this->morphMany('App\Models\Report', 'reportTable');
+        return $this->morphMany('App\Models\Follow', 'followTable');
     }
 }
 
-class Confession extends Model
+class Topic extends Model
 {
     /**
-     * Get all of the confession's reports.
+     * Get all of the topic's follows.
      */
-    public function reports()
+    public function follows()
     {
-        return $this->morphMany('App\Models\Report', 'reportTable');
+        return $this->morphMany('App\Models\Follow', 'followTable');
     }
 }

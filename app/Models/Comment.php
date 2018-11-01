@@ -26,21 +26,14 @@ class Comment extends Model
      */
     protected $fillable = [
         'user_id',
-        'post_id',
         'parent_id',
         'content',
+        'comment_table_id',
+        'comment_table_type',
         'created_at',
         'updated_at',
         'deleted_at'
     ];
-
-    /**
-     * Get posts: One to many
-     * @return [type] [description]
-     */
-    public function posts() {
-        return $this->belongsTo('App\Models\Post', 'post_id');
-    }
 
     /**
      * Get users: One to many
@@ -48,5 +41,35 @@ class Comment extends Model
      */
     public function users() {
         return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    /**
+     * Get all of the owning commentTable models.
+     */
+    public function commentTable()
+    {
+        return $this->morphTo();
+    }
+}
+
+class Post extends Model
+{
+    /**
+     * Get all of the post's comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'commentTable');
+    }
+}
+
+class Confession extends Model
+{
+    /**
+     * Get all of the confession's comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'commentTable');
     }
 }
