@@ -16,9 +16,10 @@ class CreateConfessionsTable extends Migration
         Schema::create('confessions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('content');
-            $table->string('images')->nullable();
+            $table->text('body');
+            $table->string('images')->nullale();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

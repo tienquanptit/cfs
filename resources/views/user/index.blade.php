@@ -119,7 +119,7 @@
                                     <br>
                                     <button class="btn btn-info btn-rounded">Submit</button>
                                 </div>
-                                <a class="color" id="confession">Đăng bài ẩn danh?</a>
+                                <p>Bạn có thể đăng bài ẩn danh <a class="color" data-toggle="modal" data-target="#modal-lg">ở đây</a></p>
                             </div>
                             <div class="modal fade" id="modal-lg" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -128,29 +128,34 @@
 
                                             <div class="row ">
                                                 <div class="col-md-12">
-                                                    {{ Form::open(['method' => 'POST', 'id' => 'form_confession', 'file' => true]) }}
+
+                                                    @foreach ($errors->all() as $error)
+                                                        <p class="alert alert-danger">{{ $error }}</p>
+                                                    @endforeach
+
+                                                    {{ Form::open(['route' => 'confession.store', 'method' => 'POST', 'files' => true]) }}
                                                         <div class="form-group">
                                                             {!! Form::label('title', "Tieu de", ['class' => 'control-label']) !!}
-                                                            {{ Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Write title ...', 'id' => 'title']) }}
+                                                            {{ Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Write title ...', 'id' => 'title', 'require']) }}
                                                         </div>
                                                         <div class="form-group">
-                                                            {!! Form::label('content', "Noi dung", ['class' => 'control-label']) !!}
-                                                            {{ Form::textarea('content', '', ['class' => 'form-control', 'id' => 'content', 'placeholder' => 'Write something ...', 'rows' => "5"]) }}
+                                                            {!! Form::label('body', "Noi dung", ['class' => 'control-label']) !!}
+                                                            {{ Form::textarea('body', '', ['require', 'class' => 'form-control', 'id' => 'body', 'placeholder' => 'Write something ...', 'rows' => "5"]) }}
                                                         </div>
                                                         <div class="form-group">
-                                                            {!! Form::label('image', "Ảnh", ['class' => 'control-label']) !!}
+                                                            {!! Form::label('images', "Ảnh", ['class' => 'control-label']) !!}
                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                 <span class="btn btn-default btn-file">
                                                                     <span class="fileinput-new">Select file</span>
                                                                     <span class="fileinput-exists">Change</span>
-                                                                    {{ Form::file('images', ['id' => 'fileUpload']) }}
+                                                                    {{ Form::file('images', ['id' => 'images']) }}
                                                                 </span>
                                                                     <span class="fileinput-filename"></span>
                                                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
                                                             </div>
                                                             <div id="image-holder"></div>
                                                         </div>
-                                                        {{ Form::button('submit', ['class' => 'btn btn-info btn-rounded', 'id' => 'submit']) }}
+                                                        {{ Form::submit('submit', ['class' => 'btn btn-info btn-rounded']) }}
                                                     {{ Form::close() }}
                                                 </div>
                                             </div>
@@ -162,85 +167,77 @@
 
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="feed-header">
-                            <ul class="list-media">
-                                <li class="list-item">
-                                    <div class="p-h-30 p-t-30">
-                                        <div class="media-img">
-                                            <img src="{{ asset('images/thumb-3.png') }}" alt="">
-                                        </div>
-                                        <div class="info">
-                                            <span class="title">Debra Stewart</span>
-                                            <span class="sub-title">@debrastewart</span>
-                                            <div class="float-item">
-                                                <span>7 hrs ago</span>
+                        <div class="card">
+                        @foreach ($confessions as $key => $confession)
+                            <div class="feed-header">
+                                <ul class="list-media">
+                                    <li class="list-item">
+                                        <div class="p-h-30 p-t-30">
+                                            <div class="media-img">
+                                                <img src="{{ asset('images/avatar-5.png') }}" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">F-Confession</span>
+                                                <span class="sub-title">@Anomyous</span>
+                                                <div class="float-item">
+                                                    <span>{{ $confession->created_at }}</span>
+                                                </div>
                                             </div>
                                         </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="p-30">
+                                <p class="m-b-15">{{ $confession->body }}</p>
+                                <ul class="list-inline m-t-20 p-v-15">
+                                    <li class="m-r-25">
+                                        <a href="#" class="text-gray font-size-16" title="Like">
+                                            <i class="ti-heart text-danger p-r-5"></i>
+                                            <span>168</span>
+                                        </a>
+                                    </li>
+                                    <li class="m-r-20">
+                                        <a href="#" class="text-gray font-size-16" title="Comment">
+                                            <i class="ti-comments text-success p-r-5"></i>
+                                            <span>18</span>
+                                        </a>
+                                    </li>
+                                    <li class="m-r-20">
+                                        <a href="#" class="text-gray font-size-16" title="Spam">
+                                            <i class="ti-flag text-success p-r-5"></i>
+                                            <span>5</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="social-footer">
+                                <div class="social-comment">
+                                    <a href="#" class="pull-left">
+                                        <img alt="image" src="{{ asset('images/thumb-3.png') }}">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#">
+                                            Andrew Williams
+                                        </a>
+                                        Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
+                                        <br>
+                                        <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
+                                        <small class="text-muted">12.06.2014</small>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="p-30">
-                            <p class="m-b-15">What good's a reward if you ain't around to use it?</p>
-                            <img class="img-fluid w-100" src="{{ asset('images/thumb-3.png') }}" alt="">
-                            <ul class="list-inline m-t-20 p-v-15">
-                                <li class="m-r-25">
-                                    <a href="#" class="text-gray font-size-16 ">
-                                        <i class="ti-heart text-danger p-r-5"></i>
-                                        <span>168</span>
-                                    </a>
-                                </li>
-                                <li class="m-r-20">
-                                    <a href="#" class="text-gray font-size-16">
-                                        <i class="ti-comments text-success p-r-5"></i>
-                                        <span>18</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="social-footer">
-                            <div class="social-comment">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" src="{{ asset('images/thumb-3.png') }}">
-                                </a>
-                                <div class="media-body">
-                                    <a href="#">
-                                        Andrew Williams
-                                    </a>
-                                    Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
-                                    <br>
-                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
-                                    <small class="text-muted">12.06.2014</small>
                                 </div>
-                            </div>
 
-                            <div class="social-comment">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" src="{{ asset('images/thumb-3.png') }}">
-                                </a>
-                                <div class="media-body">
-                                    <a href="#">
-                                        Andrew Williams
+                                <div class="social-comment">
+                                    <a href="#" class="pull-left">
+                                        <img alt="image" src="{{ asset('images/thumb-3.png') }}">
                                     </a>
-                                    Making this the first true generator on the Internet. It uses a dictionary of.
-                                    <br>
-                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
-                                    <small class="text-muted">10.07.2014</small>
+                                    <div class="media-body">
+                                        <textarea class="form-control" placeholder="Write comment..."></textarea>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="social-comment">
-                                <a href="#" class="pull-left">
-                                    <img alt="image" src="{{ asset('images/thumb-3.png') }}">
-                                </a>
-                                <div class="media-body">
-                                    <textarea class="form-control" placeholder="Write comment..."></textarea>
-                                </div>
                             </div>
-
+                        @endforeach
                         </div>
-                    </div>
                     <div class="card">
                         <div class="feed-header">
                             <ul class="list-media">
@@ -478,9 +475,9 @@
     <script src="{{ asset('bower_components/demo-bower/confession/user/js/selectize.min.js') }}"></script>
     <script src="{{ asset('bower_components/demo-bower/confession/user/js/sweet-alert.min.js') }}"></script>
     <script src="{{ asset('bower_components/demo-bower/confession/user/js/toastr.min.js') }}"></script>
-    <script>
+    {{--<script>
         /* image preview */
-        $("#fileUpload").on('change', function () {
+        $("#images").on('change', function () {
 
             if (typeof (FileReader) != "undefined") {
 
@@ -507,55 +504,66 @@
         $(document).on('click', '#confession', function() {
             $('#modal-lg').modal('show');
             $('#title').val('');
-            $('#content').val('');
-            $('#fileUpload').val('');
+            $('#body').val('');
+            $('#images').val('');
         });
         /*--------------------------*/
 
-        //add user
+        //send confession
         $('#submit').on('click', function (event) {
             event.preventDefault();
 
-            var form = $('#form_confession');
-            var formData = form.serialize();
+            //Lấy ra files
+            var file_data = $('#images').prop('files')[0];
+            //lấy ra kiểu file
+            var type = file_data.type;
+            //Xét kiểu file được upload
+            var match = ["image/gif", "image/png", "image/jpg",];
+            //kiểm tra kiểu file
+            if (type == match[0] || type == match[1] || type == match[2]) {
 
-            $.ajaxSetup({
-                header: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+                var form = $('#form_confession');
+                var formData = form.serialize();
+                formData.append('file', file_data);
 
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('confession.store') }}',
-                data: formData,
+                $.ajaxSetup({
+                    header: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-                success: function (res) {
-                    //console.log(res);
-                    if (res.error == 'valid') {
-                        var arr = res.message;
-                        var key = Object.keys(arr);
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('confession.store') }}',
+                    data: formData,
 
-                        for (var i = 0; i < key.length; i++) {
-                            toastr.error(arr[key[i]]);
+                    success: function (res) {
+                        console.log(res);
+                        if (res.error == 'valid') {
+                            var arr = res.message;
+                            var key = Object.keys(arr);
+
+                            for (var i = 0; i < key.length; i++) {
+                                toastr.error(arr[key[i]]);
+                            }
+                        } else  if (res.error == false) {
+                            toastr.success("Thành công");
+
+                            $('#form_confession').modal('hide');
+
+                            /*setTimeout(function(){
+                                window.location.reload();
+                            }, 1000);*/
+                        } else {
+                            //
                         }
-                    } else  if (res.error == false) {
-                        toastr.success("Thành công");
+                    },
 
-                        $('#form_confession').modal('hide');
-
-                        setTimeout(function(){
-                            window.location.reload();
-                        }, 1000);
-                    } else {
+                    error: function (res) {
                         //
                     }
-                },
-
-                error: function (res) {
-                    //
-                }
-            });
+                });
+            }
         });
-    </script>
+    </script>--}}
 @endsection

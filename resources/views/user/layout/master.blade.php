@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>F_Confession</title>
 
     <!-- Favicon -->
@@ -125,7 +126,8 @@
                         </ul>
                     </li>
                     <li class="user-profile dropdown dropdown-animated scale-left">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="">Login</a>
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img class="profile-img img-fluid" src="{{ asset('images/thumb-3.jpg') }}" alt="">
                         </a>
                         <ul class="dropdown-menu dropdown-md p-v-0">
@@ -156,7 +158,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li>--}}
                     <li class="m-r-10">
                         <a class="quick-view-toggler" href="javascript:void(0);">
                             <i class="mdi mdi-format-indent-decrease"></i>

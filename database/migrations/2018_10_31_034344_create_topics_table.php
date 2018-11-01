@@ -16,6 +16,8 @@ class CreateTopicsTable extends Migration
         if (!Schema::hasTable('topics')) {
             Schema::create('topics', function (Blueprint $table) {
                 $table->increments('id');
+                $table->integer('user_id')->unsigned();
+                $table->foreign('user_id')->references('id')->on('users');
                 $table->string('name')->unique();
                 $table->string('images')->nullable();
                 $table->tinyInteger('status')->default(0)->comment('0 - Deactivate, 1 - Active');
