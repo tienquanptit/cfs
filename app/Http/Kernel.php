@@ -63,5 +63,8 @@ class Kernel extends HttpKernel
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
+
+        'adminLogin' => \App\Http\Middleware\AdminloginMiddleware::class,
+        'locale' => \App\Http\Middleware\Locale::class, // Sử dụng cho traslation
     ];
 }

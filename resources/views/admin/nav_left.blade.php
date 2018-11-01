@@ -31,15 +31,15 @@
         <li class="nav-item start active open">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-home"></i>
-                <span class="title">Dashboard</span>
+                <span class="title">{{ trans('message.home') }}</span>
                 <span class="selected"></span>
                 <span class="arrow open"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item start active open">
-                    <a href="#" class="nav-link ">
+                    <a href="{{ route('dashboard.index') }}" class="nav-link ">
                         <i class="icon-bar-chart"></i>
-                        <span class="title">Dashboard 1</span>
+                        <span class="title">{{ trans('message.home') }}</span>
                         <span class="selected"></span>
                     </a>
                 </li>
@@ -51,13 +51,13 @@
         <li class="nav-item  ">
             <a href="javascript:" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
-                <span class="title">UI Features</span>
+                <span class="title">{{trans('message.title_confession')}}</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link ">
-                        <span class="title">Metronic Grid System</span>
+                    <a href="{{ route('confessions.index') }}" class="nav-link ">
+                        <span class="title">{{ trans('message.title_list_confession') }}</span>
                     </a>
                 </li>
             </ul>
