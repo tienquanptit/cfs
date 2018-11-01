@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
                 $table->string('slug');
                 $table->text('content');
                 $table->tinyInteger('type')->default(0)->comment('0 - ẩn danh, 1 - không ẩn danh');
+
                 $table->timestamps();
                 $table->softDeletes();
             });
