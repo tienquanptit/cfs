@@ -14,7 +14,9 @@ interface ConfessionRepository extends AbstractRepository
 {
     public function getAll($data = []);
 
-    public function destroy($id);
+    public function show($id);
+
+    public function delete($id);
 }
 
 ?>

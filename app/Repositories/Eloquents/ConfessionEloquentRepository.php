@@ -26,12 +26,19 @@ class ConfessionEloquentRepository extends AbstractEloquentRepository implements
         return $this->model()->all();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         // TODO: Implement destroy() method.
         $model = $this->model()->findOrFail($id);
 
         return $model->delete();
+    }
+
+    public function show($id)
+    {
+        // TODO: Implement show() method.
+        $data = $this->model()->findOrFail($id);
+        return $data;
     }
 }
 

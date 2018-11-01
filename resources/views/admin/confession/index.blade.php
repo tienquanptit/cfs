@@ -1,252 +1,89 @@
 @extends('admin.index')
 @section('content')
-    @foreach($confessions as $confession)
-        {{ $confession->title }}
-    @endforeach
-
     <div class="theme-panel hidden-xs hidden-sm">
-
     </div>
     <!-- END THEME PANEL -->
     <!-- BEGIN PAGE BAR -->
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
-                <a href="#">{{ trans('message.home') }}</a>
+                <a href="{{ route('dashboard.index') }}">{{ trans('message.home') }}</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="#">Tables</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span>Datatables</span>
+                <span>{{ trans('message.cfs_list_title') }}</span>
             </li>
         </ul>
-        <div class="page-toolbar">
-            <div class="btn-group pull-right">
-                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown">
-                    Actions
-                    <i class="fa fa-angle-down"></i>
-                </button>
-                <ul class="dropdown-menu pull-right" role="menu">
-                    <li>
-                        <a href="#">
-                            <i class="icon-bell"></i> Action</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-shield"></i> Another action</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-user"></i> Something else here</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <i class="icon-bag"></i> Separated link</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
     <!-- END PAGE BAR -->
-    <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> Editable Datatables
-        <small>editable datatable samples</small>
-    </h1>
-    <!-- END PAGE TITLE-->
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
-            <!-- BEGIN EXAMPLE TABLE PORTLET-->
-            <div class="portlet light portlet-fit bordered">
+            {{--alert success--}}
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+        @endif
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+            <div class="portlet">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="icon-settings font-red"></i>
-                        <span class="caption-subject font-red sbold uppercase">Editable Table</span>
+                        <i class="fa fa-list-ul"></i>{{ trans('message.list_title') }}
                     </div>
-                    <div class="actions">
-                        <div class="btn-group btn-group-devided" data-toggle="buttons">
-                            <label class="btn btn-transparent red btn-outline btn-circle btn-sm active">
-                                <input type="radio" name="options" class="toggle" id="option1">Actions</label>
-                            <label class="btn btn-transparent red btn-outline btn-circle btn-sm">
-                                <input type="radio" name="options" class="toggle" id="option2">Settings</label>
-                        </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="table-toolbar">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="btn-group">
-                                    <button id="sample_editable_1_new" class="btn green"> Add New
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="btn-group pull-right">
-                                    <button class="btn green btn-outline dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false">Tools
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li>
-                                            <a href="javascript:;"> Print </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;"> Save as PDF </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;"> Export to Excel </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="sample_editable_1_wrapper" class="dataTables_wrapper no-footer">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="dataTables_length" id="sample_editable_1_length"><label> <select
-                                                name="sample_editable_1_length" aria-controls="sample_editable_1"
-                                                class="form-control input-sm input-xsmall input-inline">
-                                            <option value="5">5</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                            <option value="-1">All</option>
-                                        </select> records</label></div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div id="sample_editable_1_filter" class="dataTables_filter"><label>Search:<input
-                                                type="search" class="form-control input-sm input-small input-inline"
-                                                placeholder="" aria-controls="sample_editable_1"></label></div>
-                            </div>
-                        </div>
-                        <div class="table-scrollable">
-                            <table class="table table-striped table-hover table-bordered dataTable no-footer"
-                                   id="sample_editable_1" role="grid" aria-describedby="sample_editable_1_info">
-                                <thead>
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label=" Username : activate to sort column descending"
-                                        style="width: 263px;"> Username
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                        colspan="1" aria-label=" Full Name : activate to sort column ascending"
-                                        style="width: 293px;"> Full Name
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                        colspan="1" aria-label=" Points : activate to sort column ascending"
-                                        style="width: 193px;"> Points
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                        colspan="1" aria-label=" Notes : activate to sort column ascending"
-                                        style="width: 201px;"> Notes
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                        colspan="1" aria-label=" Edit : activate to sort column ascending"
-                                        style="width: 148px;"> Edit
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1"
-                                        colspan="1" aria-label=" Delete : activate to sort column ascending"
-                                        style="width: 195px;"> Delete
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <i class="fa fa-bookmark-o"> </i> {{ trans('message.confession_title') }}
+                                </th>
+                                {{--<th class="hidden-xs">--}}
+                                    {{--<i class="fa fa-edit"> </i> {{ trans('message.confession_body') }}--}}
+                                {{--</th>--}}
+                                <th>
+                                    <i class="fa fa-calendar-check-o"> </i> {{ trans('message.confession_created_at') }}
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1"> alex</td>
-                                    <td> Alex Nilson</td>
-                                    <td> 1234</td>
-                                    <td class="center"> power user</td>
-                                    <td>
-                                        <a class="edit" href="javascript:;"> Edit </a>
+                            @foreach($confessions as $confession)
+                                <tr>
+                                    <td class="highlight">
+                                        @if($confession->id % 3 == 0)
+                                            <div class="success"></div>
+                                        @elseif($confession->id % 3 == 1)
+                                            <div class="info"></div>
+                                        @elseif($confession->id % 3 == 2)
+                                            <div class="warning"></div>
+                                        @endif
+                                        <a href="javascript:;"> {{ $confession->title }} </a>
                                     </td>
+                                    {{--<td class="hidden-xs"> {{ $confession->body }} </td>--}}
+                                    <td> {{ $confession->created_at }}</td>
                                     <td>
-                                        <a class="delete" href="javascript:;"> Delete </a>
-                                    </td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1"> alex</td>
-                                    <td> Alex Nilson</td>
-                                    <td> 1234</td>
-                                    <td class="center"> power user</td>
-                                    <td>
-                                        <a class="edit" href="javascript:;"> Edit </a>
-                                    </td>
-                                    <td>
-                                        <a class="delete" href="javascript:;"> Delete </a>
+                                        <a href="{{ route('confessions.show', $confession->id) }}"
+                                           class="btn btn-outline btn-circle btn-sm green-jungle">
+                                            <i class="fa fa-eye"></i> {{ trans('message.btn_show') }} </a>
+                                        {!! Form::open(['method' => 'DELETE', 'class' => 'display_form', 'route' => ['confessions.destroy', 'id' => $confession->id]]) !!}
+                                        {!! Form::button('<i class="fa fa-trash-o"></i> ' . trans('message.btn_delete'), ['class' => 'btn btn-outline btn-circle btn-sm red-thunderbird', 'type' => 'submit']) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1"> alex</td>
-                                    <td> Alex Nilson</td>
-                                    <td> 1234</td>
-                                    <td class="center"> power user</td>
-                                    <td>
-                                        <a class="edit" href="javascript:;"> Edit </a>
-                                    </td>
-                                    <td>
-                                        <a class="delete" href="javascript:;"> Delete </a>
-                                    </td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1"> gist124</td>
-                                    <td> Nick Roberts</td>
-                                    <td> 62</td>
-                                    <td class="center"> new user</td>
-                                    <td>
-                                        <a class="edit" href="javascript:;"> Edit </a>
-                                    </td>
-                                    <td>
-                                        <a class="delete" href="javascript:;"> Delete </a>
-                                    </td>
-                                </tr>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1"> goldweb</td>
-                                    <td> Sergio Jackson</td>
-                                    <td> 132</td>
-                                    <td class="center"> elite user</td>
-                                    <td>
-                                        <a class="edit" href="javascript:;"> Edit </a>
-                                    </td>
-                                    <td>
-                                        <a class="delete" href="javascript:;"> Delete </a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5 col-sm-5">
-                                <div class="dataTables_info" id="sample_editable_1_info" role="status"
-                                     aria-live="polite">Showing 1 to 5 of 8 entries
-                                </div>
-                            </div>
-                            <div class="col-md-7 col-sm-7">
-                                <div class="dataTables_paginate paging_bootstrap_number"
-                                     id="sample_editable_1_paginate">
-                                    <ul class="pagination" style="visibility: visible;">
-                                        <li class="prev disabled"><a href="#" title="Prev"><i
-                                                        class="fa fa-angle-left"></i></a></li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li class="next"><a href="#" title="Next"><i class="fa fa-angle-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <!-- END EXAMPLE TABLE PORTLET-->
+            <!-- END SAMPLE TABLE PORTLET-->
         </div>
     </div>
 @endsection
