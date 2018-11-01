@@ -91,13 +91,37 @@
                 </li>
                 <!-- END INBOX DROPDOWN -->
 
+                {{--language--}}
+                <li class="dropdown dropdown-user">
+                    <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                       data-close-others="true">
+                        <span class="username username-hide-on-mobile">{{ trans('message.language') }}</span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a href="{!! route('change_lang', ['en']) !!}">
+                                <i class="icon-user"></i> English
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{!! route('change_lang', ['vi']) !!}">
+                                <i class="icon-key"></i> Việt Nam
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown dropdown-user">
                     <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">
-                        <img alt="" class="img-circle" src="{{ asset(config('common.img').'avatar3_small.jpg') }}"/>
-                        <span class="username username-hide-on-mobile"> Nick </span>
-                        <i class="fa fa-angle-down"></i>
+                        @if(Auth::check())
+                            <img alt="" class="img-circle" src="{{ asset(config('common.img').'avatar3_small.jpg') }}"/>
+                            <span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        @endif
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
@@ -107,7 +131,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('logout') }}">
                                 <i class="icon-key"></i> Log Out
                             </a>
                         </li>

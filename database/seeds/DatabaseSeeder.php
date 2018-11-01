@@ -13,6 +13,25 @@ class DatabaseSeeder extends Seeder
     {
 //         $this->call(UsersTableSeeder::class);
         $this->call(ConfessionsTableSeed::class);
+        $this->call(AdminSeeder::class);
+    }
+}
+
+class AdminSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('users')->insert([
+            [
+                'name' => 'admin',
+                'nick_name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'phone' => '0964846895',
+                'address' => 'Hà Nội',
+                'type' => 1,
+                'password' => bcrypt('123456'),
+            ]
+        ]);
     }
 }
 
