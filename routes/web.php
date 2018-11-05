@@ -41,8 +41,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['adminLogin', 'locale']], fu
         'uses' => 'admin\DashboardController@change_lang',
     ]);
 
+    //confessions
     Route::resource('confessions', 'admin\ConfessionController')->except(['create', 'store', 'edit', 'update']);
+
+    //home
     Route::get('home', function () {
         return view('admin.home');
     });
+
+    //topics
+    Route::resource('topics', 'admin\TopicController');
+    Route::put('topics/{id?}/edit', ['as' => 'topics/updateAll', 'uses' => 'admin\TopicController@updateAll']);
+    Route::post('topics/update/{id}', ['as' => 'topics/update', 'uses' => 'admin\TopicController@update']);
+    Route::post('topics/bulk_update', ['as' => 'topics/bulk_update', 'uses' => 'admin\TopicController@bulk_update']);
+
+    //posts
+    Route::resource('posts', 'admin\PostController')->except(['create', 'store', 'edit', 'update']);
 });

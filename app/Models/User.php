@@ -47,11 +47,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get topics: Many to many
+     * Get topics: One to many
      * @return [type] [description]
      */
     public function topics() {
-        return $this->belongsToMany('App\Models\Topic', 'topic_user', 'user_id', 'topic_id');
+        return $this->hasMany('App\Models\Topic',  'user_id');
     }
 
     /**

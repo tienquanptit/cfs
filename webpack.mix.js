@@ -13,3 +13,5 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+mix.scripts('resources/js/admin.js', 'public/js/app.js');
+mix.copyDirectory('resources/js/upload_file.js', 'public/js');

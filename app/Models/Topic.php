@@ -12,7 +12,7 @@ class Topic extends Model
      * [$table description]
      * @var string
      */
-    protected $table= 'topics';
+    protected $table = 'topics';
 
     /**
      * [$dates description]
@@ -25,9 +25,13 @@ class Topic extends Model
      * @var [type]
      */
     protected $fillable = [
+        'user_id',
         'name',
         'images',
+        'slug',
         'status',
+        'set_time',
+        'select_time',
         'created_at',
         'updated_at',
         'deleted_at'
@@ -37,7 +41,8 @@ class Topic extends Model
      * Get posts: One to many
      * @return [type] [description]
      */
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany('App\Models\Post', 'topic_id');
     }
 
@@ -45,7 +50,8 @@ class Topic extends Model
      * Get users: Many to many
      * @return [type] [description]
      */
-    public function users() {
-        return $this->belongsToMany('App\Models\User', 'topic_user', 'topic_id', 'user_id');
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

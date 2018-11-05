@@ -8,8 +8,19 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     protected static $repositories = [
         [
+//            Repo of Confessions
             'App\Repositories\Contracts\ConfessionRepository',
             'App\Repositories\Eloquents\ConfessionEloquentRepository',
+        ],
+        [
+//            Repo of Topics
+            'App\Repositories\Contracts\TopicRepository',
+            'App\Repositories\Eloquents\TopicEloquentRepository',
+        ],
+        [
+//          Repo of Posts
+            'App\Repositories\Contracts\PostRepository',
+            'App\Repositories\Eloquents\PostEloquentRepository',
         ],
     ];
 

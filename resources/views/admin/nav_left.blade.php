@@ -46,8 +46,31 @@
             </ul>
         </li>
         <li class="heading">
-            <h3 class="uppercase">Features</h3>
+            <h3 class="uppercase">{{ trans('message.manages') }}</h3>
         </li>
+
+        {{--topic--}}
+        <li class="nav-item  ">
+            <a href="javascript:" class="nav-link nav-toggle">
+                <i class="icon-diamond"></i>
+                <span class="title">{{trans('message.title_topic')}}</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  ">
+                    <a href="{{ route('topics.index') }}" class="nav-link ">
+                        <span class="title">{{ trans('message.title_list_topic') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{ route('topics.create') }}" class="nav-link ">
+                        <span class="title">{{ trans('message.title_create_topic') }}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        {{--confession--}}
         <li class="nav-item  ">
             <a href="javascript:" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
@@ -62,37 +85,18 @@
                 </li>
             </ul>
         </li>
-        <li class="heading">
-            <h3 class="uppercase">Layouts</h3>
-        </li>
+
+        {{--post--}}
         <li class="nav-item  ">
             <a href="javascript:" class="nav-link nav-toggle">
-                <i class="icon-layers"></i>
-                <span class="title">Page Layouts</span>
+                <i class="icon-diamond"></i>
+                <span class="title">{{trans('message.title_post')}}</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link ">
-                        <span class="title">Blank Page</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="heading">
-            <h3 class="uppercase">Pages</h3>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:" class="nav-link nav-toggle">
-                <i class="icon-basket"></i>
-                <span class="title">eCommerce</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="#" class="nav-link ">
-                        <i class="icon-home"></i>
-                        <span class="title">Dashboard</span>
+                    <a href="{{ route('posts.index') }}" class="nav-link ">
+                        <span class="title">{{ trans('message.title_list_post') }}</span>
                     </a>
                 </li>
             </ul>

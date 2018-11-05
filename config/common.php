@@ -7,6 +7,7 @@
  */
 return [
     'img' => 'img/',
-    'images_confession' => 'images/confession/'
+    'images_confession' => 'images/confession/',
+    'uploads' => 'uploads/',
 ];
 ?>

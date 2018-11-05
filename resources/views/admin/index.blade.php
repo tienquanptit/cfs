@@ -18,6 +18,7 @@
     <meta content="Preview page of Metronic Admin Theme #1 for statistics, charts, recent events and reports"
           name="description"/>
     <meta content="" name="author"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
           type="text/css"/>
@@ -54,6 +55,10 @@
     <link href="{{ asset('bower_components/demo-bower/confession/admin/assets/layouts/layout/css/custom.min.css') }}"
           rel="stylesheet" type="text/css"/>
     <!-- END THEME LAYOUT STYLES -->
+
+    <link href="{{ asset('bower_components/demo-bower/confession/admin/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') }}"/>
+    <link href="{{ asset('bower_components/demo-bower/confession/admin/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') }}"/>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -189,6 +194,11 @@
 <script src="{{ asset('bower_components/demo-bower/confession/admin/assets/layouts/global/scripts/quick-nav.min.js') }}"
         type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
+
+{{--<script src="{{ asset('js/admin.js') }}" type="text/javascript"></script>--}}
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('script')
+
 <script>
     $(document).ready(function () {
         $('#clickmewow').click(function () {
